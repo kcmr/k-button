@@ -14,7 +14,7 @@
       margin: 0;
     }
     k-button {
-      color: #fff;
+      margin: 0 10px;
     }
     .custom {
       --k-button-padding: 15px;
@@ -25,12 +25,25 @@
   </style>
 </head>
 <body>
-  <k-button>Click me!</k-button>
+  <button>Set disabled</button>
+  <k-button type="button">Click me!</k-button>
   <k-button class="custom">Hello world</k-button>
 
   <script>
-    document.querySelector('k-button').addEventListener('click', function() {
-      alert('k-button clicked!');
+    const kButton = document.querySelector('k-button');
+
+    document.querySelector('button').addEventListener('click', function() {
+      if (kButton.hasAttribute('disabled')) {
+        kButton.removeAttribute('disabled');
+      } else {
+        kButton.setAttribute('disabled', '');
+      }
+    });
+
+    kButton.addEventListener('click', function(e) {
+      if (!e.target.hasAttribute('disabled')) {
+        alert('k-button clicked!');
+      }
     });
   </script>
 </body>

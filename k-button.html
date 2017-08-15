@@ -17,7 +17,7 @@
     }
 
     button:focus > span {
-      box-shadow: var(--k-buton-focus-box-shadow, 2px 2px 0px 0px rgb(35, 189, 234));
+      box-shadow: var(--k-buton-focus-box-shadow, 0 0 0 2px rgb(35, 189, 234));
       @apply --k-button-focus;
     }
 
@@ -47,7 +47,7 @@
     }
   </style>
 
-  <button tabindex="0">
+  <button tabindex="0" autocomplete="off">
     <span tabindex="-1">
       <content></content>
     </span>
@@ -61,7 +61,32 @@
       createdCallback: {
         value: function() {
           var tpl = importDoc.querySelector('#tpl').content;
-          var root = this.createShadowRoot().appendChild(tpl.cloneNode(true));  
+          var shadowRoot = this.createShadowRoot();
+          var root = shadowRoot.appendChild(tpl.cloneNode(true));
+
+          this.button = shadowRoot.querySelector('button');
+
+          if (this.hasAttribute('disabled')) {
+            this.setButtonAttribute('disabled');
+          }
+
+          if (this.hasAttribute('type')) {
+            this.setButtonAttribute('type');
+          }
+        }
+      },
+      attributeChangedCallback: {
+        value: function(attr, oldVal, newVal) {
+          if (newVal === null) {
+            this.button.removeAttribute(attr);
+          } else {
+            this.setButtonAttribute(attr);
+          }
+        }
+      },
+      setButtonAttribute: {
+        value: function(attr) {
+          this.button.setAttribute(attr, this.getAttribute(attr));
         }
       }
     });
