@@ -63,7 +63,26 @@
       <k-button type="button">Click me!</k-button>
       <k-button class="custom">Hello world</k-button>
     </div>
+    <p>Doesn't work in Shadow DOM :(</p>
+    <form action="" method="GET" id="form">
+      <fieldset>
+        <legend>Personal data</legend>
+        <div class="field">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name">
+        </div>
+        <div class="field">
+          <label for="age">Age</label>
+          <input type="number" id="age" name="age">
+        </div>
+      </fieldset>
+      <button>submit</button>
+      <button type="reset">reset</button>
+      <k-button type="submit" form="form" formaction="">Submit</k-button>
+      <k-button type="reset" form="form">Reset</k-button>  
+    </form>
   </div>
+
 
   <script>
     const button = document.querySelector('button');
