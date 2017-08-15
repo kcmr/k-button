@@ -13,18 +13,19 @@
       align-items: center;
       justify-content: center;
       margin: 0;
-    }
-    button:not([is]) {
-      font: inherit;
-      background-color: transparent;
-      padding: 10px;
-    }
-    body button[is="k-button"] {
+      background-color: #0b1e38;
       color: #fff;
+    }
+    a { 
+      color: gold; 
+      tex-decoration-skip: ink;
+    }
+    button[is="k-button"] {
+      color: inherit;
       margin-right: 10px;
     }
     button[is="k-button"]:last-of-type {
-      margin: 0 0 0 10px;
+      margin-right: 0;
     }
     button[is="k-button"]:active:not([disabled]) {
       position: relative;
@@ -39,7 +40,6 @@
     .demo {
       display: flex;
       flex-direction: column;
-      align-items: center;
     }
     .demo > div {
       margin-bottom: 20px;
@@ -49,26 +49,12 @@
 </head>
 <body>
   <div class="demo">
+    <p>Check out <a href="http://kizu.ru/en/blog/keyboard-only-focus/">Keyboard-Only Focus article</a></p>
     <div>
       <button is="k-button">Click me!</button>
       <button is="k-button" class="custom">Click me!</button>
+      <button is="k-button" disabled>I'm disabled</button>
     </div>
-    <p>Works in Shadow DOM :)</p>
-    <form action="" method="GET" id="form">
-      <fieldset>
-        <legend>Personal data</legend>
-        <div class="field">
-          <label for="name">Name</label>
-          <input type="text" id="name" name="name">
-        </div>
-        <div class="field">
-          <label for="age">Age</label>
-          <input type="number" id="age" name="age">
-        </div>
-      </fieldset>
-      <button type="submit" is="k-button">submit</button>
-      <button type="reset" is="k-button">reset</button>
-    </form>
   </div>
 </body>
 </html>
