@@ -16,6 +16,12 @@
       border: 0;
     }
 
+    :host([disabled]) button {
+      opacity: 0.7;
+      cursor: default;
+      pointer-events: none;
+    }
+
     button:focus > span {
       box-shadow: var(--k-buton-focus-box-shadow, 0 0 0 2px rgb(35, 189, 234));
       @apply --k-button-focus;
