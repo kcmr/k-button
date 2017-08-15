@@ -1,7 +1,6 @@
 <template id="tpl">
   <style>
     :host([hidden]) { display: none; }
-
     :host {
       font: inherit;
       border: 0;
@@ -51,15 +50,15 @@
     }
 
     /* :host not supported */
-    button[is="k-button"][hidden] { display: none; }
-    button[is="k-button"] { font: inherit; border: 0; background-color: transparent; cursor: pointer; padding: 0; }
-    button[is="k-button"]::-moz-focus-inner { padding: 0; border: 0; }
-    button[is="k-button"][disabled] { opacity: 0.7; cursor: default; pointer-events: none; }
-    button[is="k-button"]:focus > span { box-shadow: var(--k-buton-focus-box-shadow, 0 0 0 2px rgb(35, 189, 234)); @apply --k-button-focus; }
-    button[is="k-button"]:active > span, button[is="k-button"]:hover > span { background-color: var(--k-button-hover-active-background-color, #cc0248); @apply --k-button-hover-active; }
-    button[is="k-button"] > span { position: relative; display: block; padding: var(--k-button-padding, 15px 20px); background-color: var(--k-button-background-color, #ff0059); border-radius: var(--k-button-border-radius, 2px); min-width: var(--k-button-min-width, 60px); @apply --k-button; }
-    button[is="k-button"]:not(:-moz-focusring):focus > span { box-shadow: none; }
-    button[is="k-button"]:focus, button[is="k-button"] > span:focus { outline: none; }
+    [is="k-button"][hidden] { display: none; }
+    [is="k-button"] { font: inherit; border: 0; background-color: transparent; cursor: pointer; padding: 0; }
+    [is="k-button"]::-moz-focus-inner { padding: 0; border: 0; }
+    [is="k-button"][disabled] { opacity: 0.7; cursor: default; pointer-events: none; }
+    [is="k-button"]:focus > span { box-shadow: var(--k-buton-focus-box-shadow, 0 0 0 2px rgb(35, 189, 234)); @apply --k-button-focus; }
+    [is="k-button"]:active > span, button[is="k-button"]:hover > span { background-color: var(--k-button-hover-active-background-color, #cc0248); @apply --k-button-hover-active; }
+    [is="k-button"] > span { position: relative; display: block; padding: var(--k-button-padding, 15px 20px); background-color: var(--k-button-background-color, #ff0059); border-radius: var(--k-button-border-radius, 2px); min-width: var(--k-button-min-width, 60px); @apply --k-button; }
+    [is="k-button"]:not(:-moz-focusring):focus > span { box-shadow: none; }
+    [is="k-button"]:focus, button[is="k-button"] > span:focus { outline: none; }
   </style>
 
   <span tabindex="-1">
