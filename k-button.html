@@ -1,0 +1,70 @@
+<template id="tpl">
+  <style>
+    :host { display: inline-block; }
+    :host([hidden]) { display: none; }
+
+    button {
+      font: inherit;
+      color: inherit;
+      border: 0;
+      background-color: transparent;
+      cursor: pointer;
+    }
+    button::-moz-focus-inner {
+      padding: 0;
+      border: 0;
+    }
+
+    button:focus > span {
+      box-shadow: var(--k-buton-focus-box-shadow, 2px 2px 0px 0px rgb(35, 189, 234));
+      @apply --k-button-focus;
+    }
+
+    button:active > span,
+    button:hover > span {
+      background-color: var(--k-button-hover-active-background-color, #cc0248);
+      @apply --k-button-hover-active;
+    }
+
+    button > span {
+      padding: var(--k-button-padding, 15px 20px);
+      position: relative;
+      background-color: var(--k-button-background-color, #ff0059);
+      border-radius: var(--k-button-border-radius, 2px);
+      min-width: var(--k-button-min-width, 60px);
+      display: block;
+      @apply --k-button;
+    }
+
+    button:not(:-moz-focusring):focus > span {
+      box-shadow: none;
+    }
+
+    button:focus,
+    button > span:focus {
+      outline: none;
+    }
+  </style>
+
+  <button tabindex="0">
+    <span tabindex="-1">
+      <content></content>
+    </span>
+  </button>
+</template>
+
+<script>
+  (function() {
+    var importDoc = document.currentScript.ownerDocument;
+    var KButton = Object.create(HTMLElement.prototype, {
+      createdCallback: {
+        value: function() {
+          var tpl = importDoc.querySelector('#tpl').content;
+          var root = this.createShadowRoot().appendChild(tpl.cloneNode(true));  
+        }
+      }
+    });
+
+    document.registerElement('k-button', {prototype: KButton});
+  }());
+</script>

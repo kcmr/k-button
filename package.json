@@ -1,0 +1,9 @@
+{
+  "name": "k-button",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "serve": "browser-sync start --server --files \"**/*.css, **/*.html, **/*.js\" --no-open --no-notify"
+  }
+}

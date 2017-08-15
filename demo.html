@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Demo k-button</title>
+  <link rel="import" href="k-button.html">
+  <style>
+    html, body { height: 100%; }
+    body {
+      font-family: Menlo, monspace;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+    }
+    k-button {
+      color: #fff;
+    }
+    .custom {
+      --k-button-padding: 15px;
+      --k-button-background-color: #1C7BEF;
+      --k-button-hover-active-background-color: #15BB4F;
+      --k-buton-focus-box-shadow: 0 0 4px 2px rgba(35, 189, 234, 0.5);
+    }
+  </style>
+</head>
+<body>
+  <k-button>Click me!</k-button>
+  <k-button class="custom">Hello world</k-button>
+
+  <script>
+    document.querySelector('k-button').addEventListener('click', function() {
+      alert('k-button clicked!');
+    });
+  </script>
+</body>
+</html>
