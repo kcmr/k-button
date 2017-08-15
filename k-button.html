@@ -72,13 +72,25 @@
 
           this.button = shadowRoot.querySelector('button');
 
-          if (this.hasAttribute('disabled')) {
-            this.setButtonAttribute('disabled');
-          }
+          var buttonAttributes = [
+            'autofocus',
+            'disabled',
+            'form',
+            'formaction',
+            'formenctype',
+            'formmethod',
+            'formnovalidate',
+            'formtarget',
+            'name',
+            'type',
+            'value'
+          ];
 
-          if (this.hasAttribute('type')) {
-            this.setButtonAttribute('type');
-          }
+          buttonAttributes.forEach(function(attr) {
+            if (this.hasAttribute(attr)) {
+              this.setButtonAttribute(attr);
+            }
+          }, this);
         }
       },
       attributeChangedCallback: {
