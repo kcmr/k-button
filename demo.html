@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Demo k-button</title>
+  <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
   <link rel="import" href="k-button.html">
   <style>
     html, body { height: 100%; }
@@ -13,19 +14,19 @@
       justify-content: center;
       margin: 0;
     }
-    button {
+    button:not([is]) {
       font: inherit;
       background-color: transparent;
       padding: 10px;
     }
-    k-button {
+    body button[is="k-button"] {
       color: #fff;
       margin-right: 10px;
     }
-    k-button:last-of-type {
+    button[is="k-button"]:last-of-type {
       margin: 0 0 0 10px;
     }
-    k-button:active:not([disabled]) {
+    button[is="k-button"]:active:not([disabled]) {
       position: relative;
       top: 1px;
     }
@@ -44,26 +45,15 @@
       margin-bottom: 20px;
       display: flex;
     }
-    .log {
-      padding: 20px;
-      background-color: rgba(255, 179, 0, 0.22);
-      outline: 1px solid #ffa700;
-      width: 100%;
-      box-sizing: border-box;
-    }
   </style>
 </head>
 <body>
   <div class="demo">
     <div>
-      <button>Disable first button</button>
+      <button is="k-button">Click me!</button>
+      <button is="k-button" class="custom">Click me!</button>
     </div>
-    <div class="log">Nothing to show yet...</div>
-    <div>
-      <k-button type="button">Click me!</k-button>
-      <k-button class="custom">Hello world</k-button>
-    </div>
-    <p>Doesn't work in Shadow DOM :(</p>
+    <p>Works in Shadow DOM :)</p>
     <form action="" method="GET" id="form">
       <fieldset>
         <legend>Personal data</legend>
@@ -76,36 +66,9 @@
           <input type="number" id="age" name="age">
         </div>
       </fieldset>
-      <button>submit</button>
-      <button type="reset">reset</button>
-      <k-button type="submit" form="form" formaction="">Submit</k-button>
-      <k-button type="reset" form="form">Reset</k-button>  
+      <button type="submit" is="k-button">submit</button>
+      <button type="reset" is="k-button">reset</button>
     </form>
   </div>
-
-
-  <script>
-    const button = document.querySelector('button');
-    const kButton = document.querySelector('k-button');
-    const log = document.querySelector('.log');
-    let times = 0;
-
-    button.addEventListener('click', function() {
-      if (kButton.hasAttribute('disabled')) {
-        button.textContent = 'Disable first button';
-        kButton.removeAttribute('disabled');
-      } else {
-        button.textContent = 'Enable first button';
-        kButton.setAttribute('disabled', '');
-      }
-    });
-
-    kButton.addEventListener('click', function(e) {
-      if (!e.target.hasAttribute('disabled')) {
-        times++;
-        log.textContent = `k-button clicked ${times} times!`;
-      }
-    });
-  </script>
 </body>
 </html>

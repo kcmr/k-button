@@ -1,39 +1,37 @@
 <template id="tpl">
   <style>
-    :host { display: inline-block; }
     :host([hidden]) { display: none; }
 
-    button {
+    :host {
       font: inherit;
-      color: inherit;
       border: 0;
       background-color: transparent;
       cursor: pointer;
       padding: 0;
     }
-    button::-moz-focus-inner {
+    :host::-moz-focus-inner {
       padding: 0;
       border: 0;
     }
 
-    :host([disabled]) button {
+    :host([disabled]) {
       opacity: 0.7;
       cursor: default;
       pointer-events: none;
     }
 
-    button:focus > span {
+    :host(:focus) > span {
       box-shadow: var(--k-buton-focus-box-shadow, 0 0 0 2px rgb(35, 189, 234));
       @apply --k-button-focus;
     }
 
-    button:active > span,
-    button:hover > span {
+    :host(:active) > span,
+    :host(:hover) > span {
       background-color: var(--k-button-hover-active-background-color, #cc0248);
       @apply --k-button-hover-active;
     }
 
-    button > span {
+    :host > span {
       position: relative;
       display: block;
       padding: var(--k-button-padding, 15px 20px);
@@ -43,72 +41,45 @@
       @apply --k-button;
     }
 
-    button:not(:-moz-focusring):focus > span {
+    :host(:not(:-moz-focusring):focus) > span {
       box-shadow: none;
     }
 
-    button:focus,
-    button > span:focus {
+    :host(:focus),
+    :host > span:focus {
       outline: none;
     }
+
+    /* :host not supported */
+    button[is="k-button"][hidden] { display: none; }
+    button[is="k-button"] { font: inherit; border: 0; background-color: transparent; cursor: pointer; padding: 0; }
+    button[is="k-button"]::-moz-focus-inner { padding: 0; border: 0; }
+    button[is="k-button"][disabled] { opacity: 0.7; cursor: default; pointer-events: none; }
+    button[is="k-button"]:focus > span { box-shadow: var(--k-buton-focus-box-shadow, 0 0 0 2px rgb(35, 189, 234)); @apply --k-button-focus; }
+    button[is="k-button"]:active > span, button[is="k-button"]:hover > span { background-color: var(--k-button-hover-active-background-color, #cc0248); @apply --k-button-hover-active; }
+    button[is="k-button"] > span { position: relative; display: block; padding: var(--k-button-padding, 15px 20px); background-color: var(--k-button-background-color, #ff0059); border-radius: var(--k-button-border-radius, 2px); min-width: var(--k-button-min-width, 60px); @apply --k-button; }
+    button[is="k-button"]:not(:-moz-focusring):focus > span { box-shadow: none; }
+    button[is="k-button"]:focus, button[is="k-button"] > span:focus { outline: none; }
   </style>
 
-  <button tabindex="0" autocomplete="off">
-    <span tabindex="-1">
-      <content></content>
-    </span>
-  </button>
+  <span tabindex="-1">
+    <content></content>
+  </span>
 </template>
 
 <script>
   (function() {
-    var importDoc = document.currentScript.ownerDocument;
-    var KButton = Object.create(HTMLElement.prototype, {
+    var importDoc = document._currentScript ? document._currentScript.ownerDocument : document.currentScript.ownerDocument;
+    var KButton = Object.create(HTMLButtonElement.prototype, {
       createdCallback: {
         value: function() {
           var tpl = importDoc.querySelector('#tpl').content;
           var shadowRoot = this.createShadowRoot();
-          var root = shadowRoot.appendChild(tpl.cloneNode(true));
-
-          this.button = shadowRoot.querySelector('button');
-
-          var buttonAttributes = [
-            'autofocus',
-            'disabled',
-            'form',
-            'formaction',
-            'formenctype',
-            'formmethod',
-            'formnovalidate',
-            'formtarget',
-            'name',
-            'type',
-            'value'
-          ];
-
-          buttonAttributes.forEach(function(attr) {
-            if (this.hasAttribute(attr)) {
-              this.setButtonAttribute(attr);
-            }
-          }, this);
-        }
-      },
-      attributeChangedCallback: {
-        value: function(attr, oldVal, newVal) {
-          if (newVal === null) {
-            this.button.removeAttribute(attr);
-          } else {
-            this.setButtonAttribute(attr);
-          }
-        }
-      },
-      setButtonAttribute: {
-        value: function(attr) {
-          this.button.setAttribute(attr, this.getAttribute(attr));
+          var instance = shadowRoot.appendChild(tpl.cloneNode(true));
         }
       }
     });
 
-    document.registerElement('k-button', {prototype: KButton});
+    document.registerElement('k-button', {prototype: KButton, extends: 'button'});
   }());
 </script>

@@ -1,0 +1,14 @@
+{
+  "name": "k-button",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Kus Cámara <kus.camara@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/kcmr/k-button",
+  "ignore": [],
+  "devDependencies": {
+    "webcomponentsjs": "^0.7"
+  }
+}
