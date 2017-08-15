@@ -13,8 +13,21 @@
       justify-content: center;
       margin: 0;
     }
+    button {
+      font: inherit;
+      background-color: transparent;
+      padding: 10px;
+    }
     k-button {
-      margin: 0 10px;
+      color: #fff;
+      margin-right: 10px;
+    }
+    k-button:last-of-type {
+      margin: 0 0 0 10px;
+    }
+    k-button:active:not([disabled]) {
+      position: relative;
+      top: 1px;
     }
     .custom {
       --k-button-padding: 15px;
@@ -22,27 +35,56 @@
       --k-button-hover-active-background-color: #15BB4F;
       --k-buton-focus-box-shadow: 0 0 4px 2px rgba(35, 189, 234, 0.5);
     }
+    .demo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .demo > div {
+      margin-bottom: 20px;
+      display: flex;
+    }
+    .log {
+      padding: 20px;
+      background-color: rgba(255, 179, 0, 0.22);
+      outline: 1px solid #ffa700;
+      width: 100%;
+      box-sizing: border-box;
+    }
   </style>
 </head>
 <body>
-  <button>Set disabled</button>
-  <k-button type="button">Click me!</k-button>
-  <k-button class="custom">Hello world</k-button>
+  <div class="demo">
+    <div>
+      <button>Disable first button</button>
+    </div>
+    <div class="log">Nothing to show yet...</div>
+    <div>
+      <k-button type="button">Click me!</k-button>
+      <k-button class="custom">Hello world</k-button>
+    </div>
+  </div>
 
   <script>
+    const button = document.querySelector('button');
     const kButton = document.querySelector('k-button');
+    const log = document.querySelector('.log');
+    let times = 0;
 
-    document.querySelector('button').addEventListener('click', function() {
+    button.addEventListener('click', function() {
       if (kButton.hasAttribute('disabled')) {
+        button.textContent = 'Disable first button';
         kButton.removeAttribute('disabled');
       } else {
+        button.textContent = 'Enable first button';
         kButton.setAttribute('disabled', '');
       }
     });
 
     kButton.addEventListener('click', function(e) {
       if (!e.target.hasAttribute('disabled')) {
-        alert('k-button clicked!');
+        times++;
+        log.textContent = `k-button clicked ${times} times!`;
       }
     });
   </script>
