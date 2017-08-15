@@ -4,6 +4,6 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "serve": "browser-sync start --server --files \"**/*.css, **/*.html, **/*.js\" --no-open --no-notify"
+    "serve": "browser-sync start --server --files \"**/*.css, **/*.html, **/*.js\" --no-open --no-notify --startPath \"demo.html\""
   }
 }
