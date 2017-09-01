@@ -20,7 +20,7 @@ class KButton extends HTMLElement {
         }
 
         :host([disabled]) button {
-          opacity: 0.7;
+          opacity: var(--k-button-disabled-opacity, 0.7);
           cursor: default;
           pointer-events: none;
         }
@@ -30,16 +30,20 @@ class KButton extends HTMLElement {
         }
 
         button:active > span {
-          background-color: var(--k-button-hover-active-background-color, #cc0248);
+          background-color: var(--k-button-active-background-color);
+        }
+
+        :host(:not([no-hover])) button:hover > span {
+          background-color: var(--k-button-hover-background-color);
         }
 
         button > span {
           position: relative;
           display: block;
-          padding: var(--k-button-padding, 15px 20px);
-          background-color: var(--k-button-background-color, #ff0059);
-          border-radius: var(--k-button-border-radius, 2px);
-          min-width: var(--k-button-min-width, 60px);
+          padding: var(--k-button-padding);
+          background-color: var(--k-button-background-color);
+          border-radius: var(--k-button-border-radius);
+          min-width: var(--k-button-min-width);
           @apply --k-button;
         }
 

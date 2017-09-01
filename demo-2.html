@@ -18,7 +18,6 @@
       tex-decoration-skip: ink;
     }
     k-button {
-      color: inherit;
       margin-right: 10px;
     }
     k-button:last-of-type {
@@ -31,7 +30,7 @@
     .custom {
       --k-button-padding: 15px;
       --k-button-background-color: #1C7BEF;
-      --k-button-hover-active-background-color: #15BB4F;
+      --k-button-hover-background-color: #15BB4F;
       --k-buton-focus-box-shadow: 0 0 4px 2px rgba(35, 189, 234, 0.5);
     }
     .demo {
@@ -48,10 +47,11 @@
 </head>
 <body>
   <a href="">asfdas</a>
-  <k-button id="l1">normal</k-button>
+  <k-button id="l1" no-hover>normal</k-button>
   <k-button id="l2">with role</k-button>
   <k-button disabled>disabled</k-button>
   <k-button autofocus>autofocus</k-button>
+  <k-button class="custom">custom</k-button>
 
   <script>
     document.querySelector('#l1').addEventListener('keydown', e => {
