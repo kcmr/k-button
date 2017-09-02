@@ -19,6 +19,12 @@
     }
     k-button {
       margin-right: 10px;
+      --k-button-padding: 15px;
+      --k-button-background-color: #ff0059;
+      --k-button-hover-background-color: #ff0059;
+      --k-button-active-background-color: #CD094B;
+      --k-button-border-radius: 2px;
+      --k-button-min-width: 60px;
     }
     k-button:last-of-type {
       margin-right: 0;
@@ -68,10 +74,20 @@
   <form action="" class="my-form">
     <input type="text" name="something">
     <div class="actions">
-      <button type="reset">Algo</button>
-      <k-button type="submit" form=".my-form">Enviar</k-button>
+      <button type="submit">Algo</button>
+      <k-button type="submit" form=".my-form" no-submit>Enviar</k-button>
       <k-button type="reset" form=".my-form">Reset</k-button>
     </div>
   </form>
+
+  <script>
+    var form = document.querySelector('.my-form');
+    form.addEventListener('submit', e => {;
+      // form submission is prevented by using no-submit attribute
+      console.log(form.something.value);
+    });
+  </script>
+
+
 </body>
 </html>

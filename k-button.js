@@ -57,7 +57,7 @@ class KButton extends HTMLElement {
         }
       </style>
 
-      <button tabindex="0" autocomplete="off">
+      <button tabindex="0" autocomplete="off" type="button">
         <span tabindex="-1">
           <slot></slot>
         </span>
@@ -93,6 +93,18 @@ class KButton extends HTMLElement {
     return this.getAttribute('form');
   }
 
+  get noSubmit() {
+    return this.hasAttribute('no-submit');
+  }
+
+  set noSubmit(val) {
+    if (val) {
+      this.setAttribute('no-submit', '');
+    } else {
+      this.removeAttribute('no-submit');
+    }
+  }
+
   constructor() {
     super();
     let shadowRoot = this.attachShadow({mode: 'open'});
@@ -113,7 +125,11 @@ class KButton extends HTMLElement {
     let target = this.form ? this.closest(this.form) : this.parentNode;
 
     if (this.type in target) {
-      target[this.type]();
+      if (this.type === 'submit' && this.noSubmit) {
+        target.dispatchEvent(new Event('submit'));
+      } else {
+        target[this.type]();
+      }
     }
   }
 }
