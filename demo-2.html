@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+  <title>k-button v1</title>
+  <style>
+    html, body { height: 100%; box-sizing: border-box; }
+    body {
+      font-family: Menlo, monspace;
+      margin: 0;
+      background-color: #0b1e38;
+      color: #fff;
+      padding: 5%;
+    }
+    a { 
+      color: gold; 
+      tex-decoration-skip: ink;
+    }
+    k-button {
+      margin-right: 10px;
+      --k-button-padding: 15px;
+      --k-button-background-color: #ff0059;
+      --k-button-hover-background-color: #ff0059;
+      --k-button-active-background-color: #CD094B;
+      --k-button-border-radius: 2px;
+      --k-button-min-width: 60px;
+    }
+    k-button:last-of-type {
+      margin-right: 0;
+    }
+    k-button:active:not([disabled]) {
+      position: relative;
+      top: 1px;
+    }
+    .custom {
+      --k-button-padding: 15px;
+      --k-button-background-color: #1C7BEF;
+      --k-button-hover-background-color: #15BB4F;
+      --k-buton-focus-box-shadow: 0 0 4px 2px rgba(35, 189, 234, 0.5);
+    }
+    .demo {
+      display: flex;
+      flex-direction: column;
+    }
+    .demo > div {
+      margin-bottom: 20px;
+      display: flex;
+    }
+  </style>
+  <script src="./bower_components/webcomponentsjs/webcomponents-sd-ce.js"></script>
+  <script src="k-button.js"></script>
+</head>
+<body>
+  <a href="">asfdas</a>
+  <k-button id="l1" no-hover>normal</k-button>
+  <k-button id="l2">with role</k-button>
+  <k-button disabled>disabled</k-button>
+  <k-button autofocus>autofocus</k-button>
+  <k-button class="custom">custom</k-button>
+
+  <script>
+    document.querySelector('#l1').addEventListener('keydown', e => {
+      console.log(e.target);
+    });
+  </script>
+
+  <form action="">
+    <input type="text" name="nanana">
+    <k-button type="submit">Enviar</k-button>
+    <k-button type="reset">Reset</k-button>
+  </form>
+
+  <form action="" class="my-form">
+    <input type="text" name="something">
+    <div class="actions">
+      <button type="submit">Algo</button>
+      <k-button type="submit" form=".my-form" no-submit>Enviar</k-button>
+      <k-button type="reset" form=".my-form">Reset</k-button>
+    </div>
+  </form>
+
+  <script>
+    var form = document.querySelector('.my-form');
+    form.addEventListener('submit', e => {;
+      // form submission is prevented by using no-submit attribute
+      console.log(form.something.value);
+    });
+  </script>
+
+
+</body>
+</html>

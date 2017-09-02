@@ -9,6 +9,7 @@
   "homepage": "https://github.com/kcmr/k-button",
   "ignore": [],
   "devDependencies": {
-    "webcomponentsjs": "^0.7"
+    "webcomponentsjs": "^1.0.0",
+    "custom-elements": "webcomponents/custom-elements#^1.0.2"
   }
 }
