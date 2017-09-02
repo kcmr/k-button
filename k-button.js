@@ -29,12 +29,12 @@ class KButton extends HTMLElement {
           box-shadow: var(--k-buton-focus-box-shadow, 0 0 0 2px rgb(35, 189, 234));
         }
 
-        button:active > span {
-          background-color: var(--k-button-active-background-color);
+        button:hover > span {
+          background-color: var(--k-button-hover-background-color);
         }
 
-        :host(:not([no-hover])) button:hover > span {
-          background-color: var(--k-button-hover-background-color);
+        button:active > span {
+          background-color: var(--k-button-active-background-color);
         }
 
         button > span {
