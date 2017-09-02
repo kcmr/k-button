@@ -44,7 +44,7 @@ class KButton extends HTMLElement {
           background-color: var(--k-button-background-color);
           border-radius: var(--k-button-border-radius);
           min-width: var(--k-button-min-width);
-          @apply --k-button;
+          transition: var(--k-button-transition);
         }
 
         button:not(:-moz-focusring):focus > span {
