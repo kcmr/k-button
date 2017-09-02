@@ -4,6 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "serve": "browser-sync start --server --files \"**/*.css, **/*.html, **/*.js\" --no-open --no-notify --startPath \"demo.html\""
+    "serve": "browser-sync start --server --files \"**/*.css, **/*.html, **/*.js\" --no-open --no-notify --startPath \"demo.html\"",
+    "uglify": "uglifyjs k-button.js --compress --output k-button.min.js"
+  },
+  "devDependencies": {
+    "uglify-es": "^3.0.28"
   }
 }
