@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+  <title>k-button v1</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="code-sample-custom-theme.html">
+  <link rel="import" href="../bower_components/code-sample/code-sample.html">
+  <script src="../k-button.js" async></script>
+</head>
+<body ontouchstart>
+  <div class="wrapper">
+    <div class="header">
+      <h1 class="page-title">&lt;k-button&gt; <span>demo &amp; docs</span></h1>
+    </div>
+
+    <div class="body">
+      <div class="menu">
+        <ul>
+          <li>Docs
+            <ul>
+              <li><a href="#about">About</a></li>
+              <li><a href="#usage">Installation and usage</a></li>
+              <li><a href="#api">Properties / attributes</a></li>
+              <li><a href="#css">CSS properties</a></li>
+            </ul>
+          </li>
+          <li>Demos
+            <ul>
+              <li><a href="#demo-1">Basic (no styles)</a></li>
+              <li><a href="#demo-2">Button styling</a></li>
+              <li><a href="#demo-3">Form capabilities</a></li>
+            </ul>
+          </li>
+        </ul>  
+      </div>
+
+      <div class="content">
+        <section id="demo-2">
+          <h2 class="section-title">Button styling</h2>
+          <code-sample render>
+            <template>
+              <style>
+                k-button {
+                  margin-right: 10px;
+                  font-size: 15px;
+                }
+                k-button[disabled] {
+                  color: #888;
+                  --k-button-background-color: #DEE2E2;
+                }
+                .btn {
+                  font-weight: 600;
+                  color: #fff;
+                  --k-button-padding: 10px 20px;
+                  --k-button-background-color: #2387ce;
+                  --k-button-hover-background-color: var(--k-button-background-color);
+                  --k-button-active-background-color: #1B67A0;
+                  --k-button-border-radius: 4px;
+                }
+                .btn-secondary {
+                  color: #222;
+                  border: none;
+                  border-radius: 4px;
+                  --k-button-background-color: #DEE2E2;
+                  --k-button-hover-background-color: #DEE2E2;
+                  --k-button-active-background-color: #C8C9CD;
+                }
+                .btn-link {
+                  color: #2387ce;
+                  text-decoration: underline;
+                  font-weight: 600;
+                  --k-button-padding: 0 4px;
+                  --k-button-border-radius: 4px;
+                  --k-button-background-color: transparent;
+                  --k-button-hover-background-color: transparent;
+                }
+              </style>
+
+              <k-button class="btn">Button</k-button>
+              <k-button class="btn btn-secondary">Secondary</k-button>
+              <k-button class="btn" disabled>Disabled</k-button>
+              <k-button class="btn-link">Link like</k-button>
+              <k-button>Default</k-button>
+            </template>
+          </code-sample>
+        </section>
+
+        <section id="about">
+          <h2 class="section-title">About</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni in quos repellendus error, nihil suscipit quia tenetur! Facere expedita, accusantium animi officia velit eaque aliquid sit et soluta, architecto earum?</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim quos, perspiciatis maxime iusto iure eius, iste ipsam, necessitatibus rem laudantium optio, vel tempora officia facilis fugiat totam tempore voluptate! Sapiente!</p>
+          <blockquote>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni odit libero veritatis sequi aliquam nemo non. Minus atque sit culpa omnis at maiores rerum labore! Officiis est, distinctio amet magni.</p>
+          </blockquote>
+        </section>
+
+        <section id="usage">
+          <h2 class="section-title">Installation and usage</h2>
+          <ol>
+            <li>
+              <div>Install it using yarn or npm</div>
+              <code-sample>
+                <template>
+                  $ yarn add k-button
+                </template>
+              </code-sample>
+            </li>
+            <li>
+              <div>Import the script in your document head</div>
+              <code-sample>
+                <template>
+                  <script src="node_modules/k-button/k-button.min.js"></script>
+                </template>
+              </code-sample>
+            </li>
+            <li>
+              <div>Use it in your HTML</div>
+              <code-sample>
+                <template>
+                  <k-button>Some button</k-button>
+                </template>
+              </code-sample>
+            </li>
+          </ol>
+        </section>
+
+        <section id="api">
+          <h2 class="section-title">Properties / attributes</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus quo tempora asperiores porro nihil, illo beatae officia tempore nam officiis non dolor architecto quidem inventore ab a veritatis fuga maxime.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim quos, perspiciatis maxime iusto iure eius, iste ipsam, necessitatibus rem laudantium optio, vel tempora officia facilis fugiat totam tempore voluptate! Sapiente!</p>
+        </section>
+
+        <section id="css">
+          <h2 class="section-title">CSS properties</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam eum expedita distinctio, quis possimus ipsum sunt! Officiis aperiam quo, sunt explicabo molestiae eius ratione unde consequatur ipsam accusamus iusto reprehenderit?</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim quos, perspiciatis maxime iusto iure eius, iste ipsam, necessitatibus rem laudantium optio, vel tempora officia facilis fugiat totam tempore voluptate! Sapiente!</p>
+        </section>
+
+        <section id="demo-1">
+          <h2 class="section-title">Basic (no styles)</h2>
+          <code-sample render>
+            <template>
+              <k-button>Button</k-button>
+              <k-button disabled>Disabled</k-button>
+            </template>
+          </code-sample>
+        </section>
+
+        
+
+        <section id="demo-3"></section>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

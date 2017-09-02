@@ -7,6 +7,7 @@ class KButton extends HTMLElement {
 
         button {
           font: inherit;
+          text-decoration: inherit;
           color: inherit;
           border: 0;
           background-color: transparent;
@@ -16,7 +17,7 @@ class KButton extends HTMLElement {
 
         button::-moz-focus-inner {
           padding: 0;
-          border: 0;
+          border-style: none;
         }
 
         :host([disabled]) button {
