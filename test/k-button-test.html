@@ -1,0 +1,145 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../bower_components/web-component-tester/browser.js"></script>
+    <link rel="import" href="../k-button.html">
+  </head>
+
+  <body>
+    <test-fixture id="boolean">
+      <template>
+        <k-button>button</k-button>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="form">
+      <template>
+        <form action="" class="form">
+          <k-button type="submit" id="sBtn">submit</k-button>
+          <k-button type="reset" id="rBtn">reset</k-button>
+          <k-button type="invalid" id="invalidType">submit</k-button>
+
+          <div>
+            <k-button type="submit" form=".form" id="sBtn2">submit</k-button>
+            <k-button type="reset" form=".form" id="rBtn2">reset</k-button>            
+          </div>
+        </form>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite('Boolean attributes', () => {
+        let el;
+        let button;
+
+        setup(() => {
+          el = fixture('boolean');
+          button = el.shadowRoot.querySelector('button');
+        });
+
+        suite('autofocus', () => {
+          setup(() => {
+            el.setAttribute('autofocus', '');
+          });
+
+          test('adding autofocus attribute adds autofocus attribute to the button', () => {
+            assert.isTrue(button.hasAttribute('autofocus'));
+          });
+
+          test('removing autofocus attribute removes autofocus attribute to the button', () => {
+            el.removeAttribute('autofocus');
+            assert.isFalse(button.hasAttribute('autofocus'));
+          });
+        });
+
+        suite('disabled', () => {
+          setup(() => {
+            el.setAttribute('disabled', '');
+          });
+
+          test('adding disabled attribute disables the button', () => {
+            assert.isTrue(button.disabled);
+          });
+
+          test('removing disabled attribute remove disabled attribute on the button', () => {
+            el.removeAttribute('disabled');
+            assert.isFalse(button.disabled);
+          });
+        });
+      });
+
+      suite('Form capabilities', () => {
+        let form;
+        let sBtn;
+        let rBtn;
+        let sBtn2;
+        let rBtn2;
+        let invalid;
+
+        setup(() => {
+          form = fixture('form');
+          sBtn = form.querySelector('#sBtn');
+          rBtn = form.querySelector('#rBtn');
+          sBtn2 = form.querySelector('#sBtn2');
+          rBtn2 = form.querySelector('#rBtn2')
+          invalid = form.querySelector('#invalidType');
+        });
+
+        test('setting `type` attribute as `submit` calls submit on the parent form on button click', () => {
+          sinon.stub(form, 'submit');
+          sBtn.click();
+          assert.isTrue(form.submit.calledOnce);
+        });
+
+        test('setting `type` attribute as `reset` calls reset on the parent form on button click', () => {
+          sinon.stub(form, 'reset');
+          rBtn.click();
+          assert.isTrue(form.reset.calledOnce);
+        });
+
+        test('<k-button type="submit" form=".form-selector"> calls submit on the closest form with that CSS selector', () => {
+          sinon.stub(form, 'submit');
+          sBtn2.click();
+          assert.isTrue(form.submit.calledOnce);
+        });
+
+        test('<k-button type="reset" form=".form-selector"> calls reset on the closest form with that CSS selector', () => {
+          sinon.stub(form, 'reset');
+          rBtn2.click();
+          assert.isTrue(form.reset.calledOnce);
+        });
+
+        test('if the type is not valid (submit or reset) no form method is called', () => {
+          sinon.stub(form, 'submit');
+          sinon.stub(form, 'reset');
+          invalid.click();
+          assert.isFalse(form.submit.called);
+          assert.isFalse(form.reset.called);
+        });
+
+        suite('no-submit attribute', () => {
+          setup(() => {
+            sBtn.setAttribute('no-submit', '');
+          });
+
+          test('<k-button type="submit" no-submit> fires `submit` event on form', () => {
+            let submitSpy = sinon.spy();
+            form.addEventListener('submit', submitSpy);
+            sBtn.click();
+            assert.isTrue(submitSpy.calledOnce);
+          });
+
+          test('<k-button type="submit" no-submit> prevents form submission', () => {
+            sinon.spy(form, 'submit');
+            sBtn.click();
+            assert.isFalse(form.submit.called);
+          });
+        });
+      });
+    </script>
+  </body>
+
+</html>

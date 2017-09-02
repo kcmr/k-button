@@ -10,6 +10,7 @@
   "ignore": [],
   "devDependencies": {
     "webcomponentsjs": "^1.0.0",
-    "custom-elements": "webcomponents/custom-elements#^1.0.2"
+    "custom-elements": "webcomponents/custom-elements#^1.0.2",
+    "web-component-tester": "^6.1.5"
   }
 }
