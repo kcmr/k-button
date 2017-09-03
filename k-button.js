@@ -3,7 +3,10 @@ class KButton extends HTMLElement {
     return `
       <style>
         :host([hidden]) { display: none; }
-        :host { display: inline-block; }
+        :host { 
+          display: inline-block; 
+          -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; -o-user-select: none; user-select: none;
+        }
 
         button {
           font: inherit;
@@ -13,6 +16,7 @@ class KButton extends HTMLElement {
           background-color: transparent;
           cursor: pointer;
           padding: 0;
+          -ms-touch-action: manipulation; touch-action: manipulation; 
         }
 
         button::-moz-focus-inner {
@@ -20,7 +24,7 @@ class KButton extends HTMLElement {
           border-style: none;
         }
 
-        :host([disabled]) button {
+        button:disabled {
           opacity: var(--k-button-disabled-opacity, 0.7);
           cursor: default;
           pointer-events: none;
@@ -31,7 +35,7 @@ class KButton extends HTMLElement {
         }
 
         button:hover > span {
-          background-color: var(--k-button-hover-background-color);
+          background-color: var(--k-button-hover-background-color, var(--k-button-background-color));
         }
 
         button:active > span {
@@ -58,12 +62,7 @@ class KButton extends HTMLElement {
         }
       </style>
 
-      <button tabindex="0" autocomplete="off" type="button">
-        <span tabindex="-1">
-          <slot></slot>
-        </span>
-      </button>
-    `;
+      <button tabindex="0" autocomplete="off" type="button"><span tabindex="-1"><slot></slot></span></button>`;
   }
 
   static get observedAttributes() {
